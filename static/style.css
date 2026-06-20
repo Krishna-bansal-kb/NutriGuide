@@ -493,3 +493,35 @@ label{
 .footer p{
     margin:8px 0;
 }
+.hero-buttons{
+    margin-top:30px;
+}
+
+.secondary-btn{
+    background:white;
+    color:#2d6a4f;
+    margin-left:15px;
+}
+
+.secondary-btn:hover{
+    background:#f2f2f2;
+}
+.section-title{
+    text-align:center;
+    margin-bottom:40px;
+    grid-column:1/-1;
+}
+
+.section-title h2{
+    font-size:40px;
+    margin-bottom:10px;
+}
+
+.section-title p{
+    color:#666;
+    font-size:18px;
+}
+.stat-icon{
+    font-size:40px;
+    margin-bottom:10px;
+}
