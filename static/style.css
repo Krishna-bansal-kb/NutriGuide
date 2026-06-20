@@ -47,6 +47,8 @@ transition:0.3s;
 }
 
 .nav-links a:hover
+color:#2d6a4f;
+}
 
 /* ==========================
 HERO SECTION
@@ -435,4 +437,62 @@ MOBILE RESPONSIVE
 }
 ```
 
+}
+.hero-btn{
+    margin:10px;
+    min-width:180px;
+}
+section h2{
+    font-size:36px;
+    margin-bottom:20px;
+    font-weight:700;
+}
+.feature-card h2{
+    font-size:24px;
+    margin-bottom:15px;
+}
+
+.feature-card{
+    border-top:5px solid #2d6a4f;
+}
+.highlight-card h3{
+    color:#2d6a4f;
+    margin-bottom:12px;
+}
+
+.highlight-card p{
+    line-height:1.7;
+}
+.stat-card{
+    box-shadow:0 5px 18px rgba(0,0,0,0.12);
+}
+
+.stat-card p{
+    font-weight:600;
+    color:#555;
+}
+form h2{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+label{
+    font-weight:600;
+    color:#444;
+}
+.footer{
+    background:#1b4332;
+    color:white;
+    text-align:center;
+    padding:50px 20px;
+    margin-top:60px;
+}
+
+.footer h3{
+    color:white;
+    margin-bottom:10px;
+}
+
+.footer p{
+    margin:8px 0;
 }
