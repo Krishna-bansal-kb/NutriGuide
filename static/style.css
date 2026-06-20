@@ -865,3 +865,37 @@ RESULT PAGE PREMIUM CARDS
 
     transition:0.3s;
 }
+.risk-card,
+.alternative-card{
+
+    background:white;
+    padding:25px;
+    margin:20px 0;
+
+    border-radius:18px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,0.08);
+
+    animation:fadeUp 0.8s ease;
+}
+
+.risk-card:hover,
+.alternative-card:hover{
+
+    transform:translateY(-5px);
+
+    transition:0.3s;
+}
+
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
