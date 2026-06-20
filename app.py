@@ -43,6 +43,7 @@ def home():
 @app.route('/analyze', methods=['POST'])
 def analyze():
 
+    global latest_report
     
     # User Details
     name = request.form['name']
@@ -72,30 +73,31 @@ def analyze():
         bmi_status = "Obese"
 
     # Personalized Insight
+    # Personalized Insight
 
-if bmi < 18.5:
-    personalized_insight = (
-        f"{name}, your BMI indicates that you are underweight. "
-        "A gradual increase in calorie and protein intake may help improve your health."
-    )
+    if bmi < 18.5:
+        personalized_insight = (
+            f"{name}, your BMI indicates that you are underweight. "
+            "A gradual increase in calorie and protein intake may help improve your health."
+        )
 
-elif bmi < 25:
-    personalized_insight = (
-        f"{name}, your BMI is within the healthy range. "
-        "Maintaining balanced nutrition and regular physical activity is recommended."
-    )
+    elif bmi < 25:
+        personalized_insight = (
+            f"{name}, your BMI is within the healthy range. "
+            "Maintaining balanced nutrition and regular physical activity is recommended."
+        )
 
-elif bmi < 30:
-    personalized_insight = (
-        f"{name}, your BMI indicates overweight status. "
-        "Reducing excess calories and increasing physical activity may help."
-    )
+    elif bmi < 30:
+        personalized_insight = (
+            f"{name}, your BMI indicates overweight status. "
+            "Reducing excess calories and increasing physical activity may help."
+        )
 
-else:
-    personalized_insight = (
-        f"{name}, your BMI indicates obesity. "
-        "A structured diet plan and regular exercise are strongly recommended."
-    )
+    else:
+        personalized_insight = (
+            f"{name}, your BMI indicates obesity. "
+            "A structured diet plan and regular exercise are strongly recommended."
+        )
 
     # Daily Calorie Requirement
     daily_calories = round(weight * 30)
@@ -258,34 +260,33 @@ else:
         health_rating = "Poor"
 
     recommendations = []
-# Smart Nutrient Analysis
 
-if total_sugar > 50:
-    recommendations.append(
-        "Your meal contains a high amount of sugar. Consider reducing sugary foods."
-    )
+    # Smart Nutrient Analysis
 
-if total_fat > 70:
-    recommendations.append(
-        "Fat content is relatively high. Prefer healthier fat sources."
-    )
+    if total_sugar > 50:
+        recommendations.append(
+            "Your meal contains a high amount of sugar. Consider reducing sugary foods."
+        )
 
-if total_protein < 20:
-    recommendations.append(
-        "Protein intake appears low. Consider adding pulses, milk, eggs or paneer."
-    )
+    if total_fat > 70:
+        recommendations.append(
+            "Fat content is relatively high. Prefer healthier fat sources."
+        )
 
-if total_calories > daily_calories:
-    recommendations.append(
-        "This meal exceeds your estimated daily calorie requirement."
-    )
+    if total_protein < 20:
+        recommendations.append(
+            "Protein intake appears low. Consider adding pulses, milk, eggs or paneer."
+        )
 
-if total_carbs > 250:
-    recommendations.append(
-        "Carbohydrate intake is relatively high. Balance it with protein and fibre."
-    )
-    
-    
+    if total_calories > daily_calories:
+        recommendations.append(
+            "This meal exceeds your estimated daily calorie requirement."
+        )
+
+    if total_carbs > 250:
+        recommendations.append(
+            "Carbohydrate intake is relatively high. Balance it with protein and fibre."
+        )
     # Disease Analysis
 
     if condition == "Diabetes":
@@ -406,7 +407,6 @@ if total_carbs > 250:
     "Light Cardio",
     f"Daily calorie surplus target: 300-500 kcal"
 ]
-    global latest_report
 
     history_file = "history.csv"
 
