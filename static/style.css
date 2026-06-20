@@ -1,3 +1,6 @@
+html{
+    scroll-behavior:smooth;
+}
 body{
 font-family:'Segoe UI', Arial, sans-serif;
 background:#f4f7fb;
@@ -39,12 +42,43 @@ margin-right:100px;
 }
 
 .nav-links a{
-text-decoration:none;
-color:#333;
-font-weight:600;
-font-size:16px;
-transition:0.3s;
+
+    text-decoration:none;
+
+    color:#333;
+
+    font-weight:600;
+
+    font-size:16px;
+
+    position:relative;
+
+    transition:0.3s;
 }
+
+.nav-links a::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:0;
+
+    height:2px;
+
+    left:0;
+
+    bottom:-5px;
+
+    background:#2d6a4f;
+
+    transition:0.3s;
+}
+
+.nav-links a:hover::after{
+    width:100%;
+}
+
 
 .nav-links a:hover{
     color:#2d6a4f;
@@ -77,9 +111,40 @@ HERO SECTION
 }
 
 .hero-content h1{
-font-size:65px;
-margin-bottom:10px;
-color:white;
+
+    font-size:65px;
+
+    font-weight:800;
+
+    margin-bottom:10px;
+
+    background:linear-gradient(
+        90deg,
+        #ffffff,
+        #95d5b2
+    );
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.hero-content{
+    animation:floatHero 4s ease-in-out infinite;
+}
+
+@keyframes floatHero{
+
+    0%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-10px);
+    }
+
+    100%{
+        transform:translateY(0);
+    }
 }
 
 .hero-content p{
@@ -89,9 +154,16 @@ margin:auto;
 }
 
 .hero-btn{
-margin-top:25px;
-padding:15px 35px;
-font-size:18px;
+
+    margin-top:25px;
+
+    padding:16px 40px;
+
+    font-size:18px;
+
+    border-radius:50px;
+
+    font-weight:700;
 }
 
 /* ==========================
@@ -105,6 +177,34 @@ color:#2d6a4f;
 
 h2{
 color:#2d6a4f;
+}
+
+section h2{
+
+    position:relative;
+
+    display:inline-block;
+
+    padding-bottom:10px;
+}
+
+section h2::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:20%;
+
+    width:60%;
+
+    height:4px;
+
+    background:#2d6a4f;
+
+    bottom:0;
+
+    border-radius:10px;
 }
 
 h3{
@@ -256,8 +356,11 @@ transition:0.3s;
 }
 
 .feature-card:hover{
-transform:translateY(-10px);
-box-shadow:0 10px 20px rgba(0,0,0,0.15);
+
+    transform:translateY(-12px);
+
+    box-shadow:
+    0 15px 35px rgba(45,106,79,0.25);
 }
 
 .feature-card p{
@@ -366,7 +469,11 @@ transition:0.3s;
 }
 
 .highlight-card:hover{
-transform:translateY(-10px);
+
+    transform:translateY(-12px);
+
+    box-shadow:
+    0 15px 35px rgba(45,106,79,0.25);
 }
 
 /* ==========================
