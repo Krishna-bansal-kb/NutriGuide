@@ -71,6 +71,32 @@ def analyze():
     else:
         bmi_status = "Obese"
 
+    # Personalized Insight
+
+if bmi < 18.5:
+    personalized_insight = (
+        f"{name}, your BMI indicates that you are underweight. "
+        "A gradual increase in calorie and protein intake may help improve your health."
+    )
+
+elif bmi < 25:
+    personalized_insight = (
+        f"{name}, your BMI is within the healthy range. "
+        "Maintaining balanced nutrition and regular physical activity is recommended."
+    )
+
+elif bmi < 30:
+    personalized_insight = (
+        f"{name}, your BMI indicates overweight status. "
+        "Reducing excess calories and increasing physical activity may help."
+    )
+
+else:
+    personalized_insight = (
+        f"{name}, your BMI indicates obesity. "
+        "A structured diet plan and regular exercise are strongly recommended."
+    )
+
     # Daily Calorie Requirement
     daily_calories = round(weight * 30)
     water_intake = round((weight*35)/1000,2)
@@ -163,17 +189,19 @@ def analyze():
 
     elif goal == "Muscle Gain":
         diet_plan = [
-            "Breakfast: Eggs + Milk",
-            "Lunch: Rice + Chicken + Vegetables",
-            "Dinner: Paneer + Roti"
-        ]
+    f"Breakfast: Eggs and milk",
+    f"Lunch: Rice, chicken/paneer and vegetables",
+    f"Dinner: Paneer and chapati",
+    f"Target Protein: {round(weight*1.6)} g/day"
+]
 
     elif goal == "Weight Gain":
         diet_plan = [
-            "Breakfast: Banana Shake",
-            "Lunch: Rice + Dal + Paneer",
-            "Dinner: Chapati + Vegetables"
-        ]
+    f"Breakfast: Banana shake with nuts",
+    f"Lunch: Rice, dal and paneer",
+    f"Dinner: Chapati and vegetables",
+    f"Target Calories: {daily_calories+400} kcal/day"
+]
 
 # Negative factors
 
@@ -230,18 +258,45 @@ def analyze():
         health_rating = "Poor"
 
     recommendations = []
+# Smart Nutrient Analysis
 
+if total_sugar > 50:
+    recommendations.append(
+        "Your meal contains a high amount of sugar. Consider reducing sugary foods."
+    )
+
+if total_fat > 70:
+    recommendations.append(
+        "Fat content is relatively high. Prefer healthier fat sources."
+    )
+
+if total_protein < 20:
+    recommendations.append(
+        "Protein intake appears low. Consider adding pulses, milk, eggs or paneer."
+    )
+
+if total_calories > daily_calories:
+    recommendations.append(
+        "This meal exceeds your estimated daily calorie requirement."
+    )
+
+if total_carbs > 250:
+    recommendations.append(
+        "Carbohydrate intake is relatively high. Balance it with protein and fibre."
+    )
+    
+    
     # Disease Analysis
 
     if condition == "Diabetes":
         if food_info['GI'] > 55:
             recommendations.append(
-                "⚠ High Glycemic Index. Not ideal for diabetics."
-            )
+    f"The selected meal has a GI value of {food_info['GI']}, which may cause faster blood sugar spikes."
+)
         else:
             recommendations.append(
-                "✅ Suitable for diabetics."
-            )
+    f"The GI value of {food_info['GI']} is relatively diabetes-friendly."
+)
 
     elif condition == "Hypertension":
         if food_info['Sodium'] > 200:
@@ -331,25 +386,26 @@ def analyze():
 
     if goal == "Weight Loss":
         exercise = [
-            "Walking - 45 min/day",
-            "Cycling - 30 min/day",
-            "Jogging - 20 min/day"
-        ]
-
+    "45 min brisk walking",
+    "20 min jogging",
+    "Cycling 30 min",
+    f"Estimated calorie burn target: {round(weight*5)} kcal/day"
+]
     elif goal == "Muscle Gain":
         exercise = [
-            "Push-ups",
-            "Squats",
-            "Resistance Training",
-            "Strength Training"
-        ]
+    "Strength Training",
+    "Push-ups",
+    "Squats",
+    f"Protein goal: {round(weight*1.6)} g/day"
+]
 
     elif goal == "Weight Gain":
         exercise = [
-            "Weight Training",
-            "Compound Exercises",
-            "Moderate Cardio"
-        ]
+    "Weight Training",
+    "Compound Exercises",
+    "Light Cardio",
+    f"Daily calorie surplus target: 300-500 kcal"
+]
     global latest_report
 
     history_file = "history.csv"
@@ -416,6 +472,7 @@ def analyze():
         prediction= prediction,
         food_records=food_records,
         graph_html=graph_html,
+        personalized_insight=personalized_insight,
     )
 
 @app.route('/download_pdf')
