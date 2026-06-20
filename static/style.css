@@ -1,4 +1,7 @@
 body{
+    background:black !important;
+}
+body{
 font-family:'Segoe UI', Arial, sans-serif;
 background:#f4f7fb;
 margin:0;
@@ -46,8 +49,8 @@ font-size:16px;
 transition:0.3s;
 }
 
-.nav-links a:hover
-color:#2d6a4f;
+.nav-links a:hover{
+    color:#2d6a4f;
 }
 
 /* ==========================
@@ -393,18 +396,15 @@ animation:fadeUp 1s ease;
 }
 
 @keyframes fadeUp{
-from{
-opacity:0;
-transform:translateY(30px);
-}
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
 
-```
-to{
-    opacity:1;
-    transform:translateY(0);
-}
-```
-
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
 }
 
 /* ==========================
