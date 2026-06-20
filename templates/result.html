@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Nutrition Analysis Result</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<h1>NutriGuide - Analysis Result</h1>
+<div class="card">
+    <h2>Welcome {{ name }}</h2>
+    <p><strong>Age:</strong> {{ age }}</p>
+    <p><strong>BMI:</strong> {{ bmi }}</p>
+    <p><strong>Health Status:</strong> {{ bmi_status }}</p>
+    <p>
+        <strong>Estimated Daily Calorie Requirement:</strong>
+        {{ daily_calories }} kcal/day
+    </p>
+    <p>
+        <strong>Recommended Water Intake:</strong>
+        {{ water_intake }} Litres/day
+    </p>
+    <div class="score">
+        <h3>Health Score: {{ score }}/100</h3>
+    </div>
+    <h3>Food Quality: {{ health_rating }}</h3>
+</div>
+{% if prediction %}
+<div class="card">
+    <h2>AI Health Classification</h2>
+    <h3>{{ prediction }}</h3>
+</div>
+{% endif %}
+{% if total_calories is defined %}
+<div class="card">
+    <h2>Meal Summary</h2>
+    <p><strong>Total Calories:</strong>
+        {{ total_calories }} kcal</p>
+    <p><strong>Total Protein:</strong>
+        {{ total_protein }} g</p>
+    <p><strong>Total Fat:</strong>
+        {{ total_fat }} g</p>
+    <p><strong>Total Carbohydrates:</strong>
+        {{ total_carbs }} g</p>
+    <p><strong>Total Sugar:</strong>
+        {{ total_sugar }} g</p>
+</div>
+{% endif %}
+<div class="card">
+<h2>Suggested Diet Plan</h2>
+<ul>
+{% for item in diet_plan %}
+<li>{{ item }}</li>
+{% endfor %}
+</ul>
+</div>
+<hr>
+<div class="card">
+<h2>Foods Analyzed</h2>
+{% for item in food_records %}
+<div class="food-card">
+<h3>{{ item['Food'] }}</h3>
+<table>
+<tr>
+<th>Nutrient</th>
+<th>Value</th>
+</tr>
+<tr>
+<td>Calories</td>
+<td>{{ item['Calories'] }} kcal</td>
+</tr>
+<tr>
+<td>Protein</td>
+<td>{{ item['Protein'] }} g</td>
+</tr>
+<tr>
+<td>Fat</td>
+<td>{{ item['Fat'] }} g</td>
+</tr>
+<tr>
+<td>Carbohydrates</td>
+<td>{{ item['Carbs'] }} g</td>
+</tr>
+<tr>
+<td>Sugar</td>
+<td>{{ item['Sugar'] }} g</td>
+</tr>
+<tr>
+<td>Sodium</td>
+<td>{{ item['Sodium'] }} mg</td>
+</tr>
+<tr>
+<td>Calcium</td>
+<td>{{ item['Calcium'] }} mg</td>
+</tr>
+<tr>
+<td>Iron</td>
+<td>{{ item['Iron'] }} mg</td>
+</tr>
+<tr>
+<td>Cholesterol</td>
+<td>{{ item['Cholesterol'] }} mg</td>
+</tr>
+<tr>
+<td>Glycemic Index</td>
+<td>{{ item['GI'] }}</td>
+</tr>
+</table>
+<br>
+</div>
+{% endfor %}
+</div>
+<div class="card">
+<h2>Nutrient Distribution Graph</h2>
+<div class="graph-box">
+    {{ graph_html | safe }}
+</div>
+</div>
+<div class="card">
+<h2>Health Recommendations</h2>
+<ul>
+{% for rec in recommendations %}
+<li>{{ rec }}</li>
+{% endfor %}
+</ul>
+</div>
+<div class="card">
+<h2>Recommended Exercises</h2>
+<ul>
+{% for ex in exercise %}
+<li>{{ ex }}</li>
+{% endfor %}
+</ul>
+</div>
+<div class="card">
+<h2>Disease Specific Diet Plan</h2>
+<ul>
+{% for item in disease_diet %}
+<li>{{ item }}</li>
+{% endfor %}
+</ul>
+</div>
+<div class="card">
+<h2>Foods To Avoid</h2>
+<ul>
+{% for item in foods_to_avoid %}
+<li>{{ item }}</li>
+{% endfor %}
+</ul>
+</div>
+<br>
+<div style="text-align:center;">
+<a href="/download_pdf">
+<button>
+Download PDF Report
+</button>
+</a>
+<br><br>
+<a href="/">
+<button>
+Analyze Another Food
+</button>
+</a>
+<br><br>
+<a href="/history">
+<button>
+View Analysis History
+</button>
+</a>
+</div>
+</body>
+</html>
