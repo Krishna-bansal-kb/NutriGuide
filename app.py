@@ -183,11 +183,16 @@ def analyze():
     diet_plan = []
 
     if goal == "Weight Loss":
+    
+        breakfast = round(daily_calories * 0.25)
+        lunch = round(daily_calories * 0.40)
+        dinner = round(daily_calories * 0.35)
+    
         diet_plan = [
-            "Breakfast: Oats + Apple",
-            "Lunch: Dal + Roti + Salad",
-            "Dinner: Soup + Paneer"
-        ]
+     f"Breakfast (~{breakfast} kcal): Oats + Apple",
+     f"Lunch (~{lunch} kcal): Dal + Roti + Salad",
+     f"Dinner (~{dinner} kcal): Soup + Paneer"
+]
 
     elif goal == "Muscle Gain":
         diet_plan = [
@@ -260,6 +265,33 @@ def analyze():
         health_rating = "Poor"
 
     recommendations = []
+
+    health_risk = []
+
+if bmi >= 30:
+    health_risk.append(
+        "High obesity related health risk."
+    )
+
+if total_sugar > 50:
+    health_risk.append(
+        "Elevated blood sugar risk."
+    )
+
+if sodium > 500:
+    health_risk.append(
+        "Elevated hypertension risk."
+    )
+
+if cholesterol > 100:
+    health_risk.append(
+        "Elevated cardiovascular risk."
+    )
+
+if not health_risk:
+    health_risk.append(
+        "No major nutritional risks detected."
+    )
 
     # Smart Nutrient Analysis
 
@@ -341,9 +373,10 @@ def analyze():
     if condition == "Diabetes":
 
         disease_diet = [
-            "Breakfast: Oats + Boiled Egg",
-            "Lunch: Brown Rice + Dal",
-            "Dinner: Salad + Paneer"
+            f"Breakfast: Oats and protein source",
+            f"Lunch: Brown rice + dal",
+            f"Dinner: Salad + paneer",
+            f"Daily calorie target: {daily_calories} kcal"
         ]
 
         foods_to_avoid = [
@@ -429,6 +462,19 @@ def analyze():
         index=False
     )
 
+
+    food_alternatives = {
+        "Burger": ["Paneer Sandwich", "Veg Wrap"],
+        "Pizza": ["Whole Wheat Sandwich", "Vegetable Bowl"],
+        "Soft Drink": ["Lemon Water", "Coconut Water"],
+        "French Fries": ["Roasted Sweet Potato", "Boiled Corn"]
+    }
+    
+    alternatives = food_alternatives.get(
+        food_info['Food'],
+        ["Fruit Salad", "Mixed Nuts"]
+    )
+    
     latest_report = {
         "name": name,
         "age": age,
@@ -473,6 +519,8 @@ def analyze():
         food_records=food_records,
         graph_html=graph_html,
         personalized_insight=personalized_insight,
+        health_risk=health_risk,
+        alternatives=alternatives,
     )
 
 @app.route('/download_pdf')
