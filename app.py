@@ -117,15 +117,15 @@ def analyze():
 
     food_info = results.iloc[0]
     food_records = results.to_dict('records')
-    prediction = model.predict(
-[[
-    food_info["Calories"],
-    food_info["Protein"],
-    food_info["Fat"],
-    food_info["Sugar"],
-    food_info["Sodium"]
-]]
-)[0]
+    prediction_input = pd.DataFrame({
+        "Calories": [food_info["Calories"]],
+        "Protein": [food_info["Protein"]],
+        "Fat": [food_info["Fat"]],
+        "Sugar": [food_info["Sugar"]],
+        "Sodium": [food_info["Sodium"]]
+    })
+    
+    prediction = model.predict(prediction_input)[0]
 
     total_calories = results['Calories'].sum()
     total_protein = results['Protein'].sum()
