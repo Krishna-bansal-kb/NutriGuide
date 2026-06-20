@@ -8,9 +8,9 @@
 <body>
 <div class="result-header">
     <h1>Nutrition Analysis Report</h1>
-    <p>AI Powered Personalized Health Assessment</p>
+    <p>Personalized Health Assessment</p>
 </div>
-<div class="card">
+<div class="card result-card">
     <h2>Welcome {{ name }}</h2>
     <p><strong>Age:</strong> {{ age }}</p>
 <div class="health-grid">
@@ -44,6 +44,17 @@
     </div>
 </div>
     <h3>Food Quality: {{ health_rating }}</h3>
+    <div class="health-box">
+    <h3>Personal Health Insight</h3>
+    <p>{{ personalized_insight }}</p>
+</div>
+    <div class="health-box">
+    <h3>Personal Insight</h3>
+
+    <p>
+        {{ personalized_insight }}
+    </p>
+</div>
 </div>
 {% if prediction %}
 <div class="card">
